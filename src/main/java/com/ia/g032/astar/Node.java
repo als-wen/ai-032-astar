@@ -16,7 +16,7 @@ public class Node extends JButton implements ActionListener {
     int f;
     boolean start;
     boolean goal;
-    boolean solid;
+    boolean wall;
     boolean open;
     boolean close;
 
@@ -39,6 +39,12 @@ public class Node extends JButton implements ActionListener {
         setBackground(Color.blue);
         setForeground(Color.white);
         goal = true;
+    }
+
+    public void wall() {
+        setBackground(Color.black);
+        setForeground(Color.black);
+        wall = true;
     }
 
     @Override

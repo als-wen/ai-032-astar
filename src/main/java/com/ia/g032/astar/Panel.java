@@ -39,6 +39,12 @@ public class Panel extends JPanel {
 
         startNode(2, 3);
         finalNode(11, 9);
+
+        for(int i = 7; i < 11; i++) {
+            wallNode(10, i);
+        }
+        wallNode(11,7);
+        wallNode(12,7);
     }
 
     private void startNode(int col, int row) {
@@ -50,5 +56,9 @@ public class Panel extends JPanel {
     private void finalNode(int col, int row) {
         node[col][row].goal();
         finalNode = node[col][row];
+    }
+
+    private void wallNode(int col, int row) {
+        node[col][row].wall();
     }
 }
