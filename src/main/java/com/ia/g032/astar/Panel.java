@@ -20,6 +20,7 @@ public class Panel extends JPanel {
     Node finalNode;
     Node currentNode;
     ArrayList<Node> openNodes = new ArrayList<>();
+    ArrayList<Node> wallNodes = new ArrayList<>();
 
     boolean goalReached = false;
 
@@ -69,6 +70,7 @@ public class Panel extends JPanel {
 
     private void wallNode(int col, int row) {
         node[col][row].wall();
+        wallNodes.add(node[col][row]);
     }
 
     private void nodeCosts() {
@@ -97,7 +99,7 @@ public class Panel extends JPanel {
 
         node.f = node.g + node.h; //f (Total estimated cost)
 
-        if(node != startNode && node != finalNode) {
+        if(node != startNode && node != finalNode && (!wallNodes.contains(node))) {
             node.setText("<html>f: " + node.f + "<br>g: " + node.g + "</html>");
         }
     }
