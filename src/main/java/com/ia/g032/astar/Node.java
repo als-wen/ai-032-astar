@@ -47,6 +47,23 @@ public class Node extends JButton implements ActionListener {
         wall = true;
     }
 
+    public void openNode() {
+        open = true;
+    }
+
+    public void closeNode() {
+        if(start == false && goal == false) {
+            setBackground(Color.yellow);
+            setForeground(Color.black);
+        }
+        close = true;
+    }
+
+    public void path() {
+        setBackground(Color.green);
+        setForeground(Color.black);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         setBackground(Color.yellow);

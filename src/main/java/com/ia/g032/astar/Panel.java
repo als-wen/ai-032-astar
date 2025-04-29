@@ -3,6 +3,7 @@ package com.ia.g032.astar;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -17,11 +18,17 @@ public class Panel extends JPanel {
     Node startNode;
     Node finalNode;
     Node currentNode;
+    ArrayList<Node> openNodes = new ArrayList<>();
+    ArrayList<Node> closeNodes = new ArrayList<>();
+
+    boolean goalReached = false;
 
     public Panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setLayout(new GridLayout(rows, cols));
+        this.addKeyListener(new KeyHandler(this));
+        setFocusable(true);
 
         int col = 0;
         int row = 0;
@@ -92,6 +99,53 @@ public class Panel extends JPanel {
 
         if(node != startNode && node != finalNode) {
             node.setText("<html>f: " + node.f + "<br>g: " + node.g + "</html>");
+        }
+    }
+
+    public void search() {
+        if(goalReached == false) {
+            int col = currentNode.col;
+            int row = currentNode.row;
+
+            currentNode.closeNode();
+            closeNodes.add(currentNode);
+            openNodes.remove(currentNode);
+
+            if(row - 1 >= 0) open(node[col][row - 1]);
+            if(col - 1 >= 0) open(node[col - 1][row]);
+            if(row + 1 < rows) open(node[col][row + 1]);
+            if(col + 1 < cols) open(node[col + 1][row]);
+
+            int bestIndex = 0;
+            int bestfCost = 999;
+
+            for(int i = 0; i < openNodes.size(); i++) {
+                if(openNodes.get(i).f < bestfCost) {
+                    bestIndex = i;
+                    bestfCost = openNodes.get(i).f;
+                }
+
+                else if(openNodes.get(i).f == bestfCost) {
+                    if(openNodes.get(i).g < openNodes.get(bestIndex).g) {
+                        bestIndex = i;
+
+                    }  
+                }
+            }
+
+            currentNode = openNodes.get(bestIndex);
+
+            if(currentNode == finalNode) {
+                goalReached = true;
+            }
+        }
+    }
+
+    private void open(Node node) {
+        if(node.open == false && node.close == false && node.wall == false) {
+            node.openNode();
+            node.parent = currentNode;
+            openNodes.add(node);
         }
     }
 }
