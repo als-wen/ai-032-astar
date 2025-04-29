@@ -13,6 +13,7 @@ public class Panel extends JPanel {
     final int nodeSize = 50;
     final int screenWidth = nodeSize * cols;
     final int screenHeight = nodeSize * rows;
+    int count = 0;
 
     Node[][] node = new Node[cols][rows];
     Node startNode;
@@ -103,7 +104,7 @@ public class Panel extends JPanel {
     }
 
     public void search() {
-        if(goalReached == false) {
+        while(goalReached == false && count <= 1000) {
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -138,6 +139,8 @@ public class Panel extends JPanel {
             if(currentNode == finalNode) {
                 goalReached = true;
             }
+
+            count++;
         }
     }
 
