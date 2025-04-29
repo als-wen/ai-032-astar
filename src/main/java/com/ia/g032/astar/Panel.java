@@ -14,6 +14,9 @@ public class Panel extends JPanel {
     final int screenHeight = nodeSize * rows;
 
     Node[][] node = new Node[cols][rows];
+    Node startNode;
+    Node finalNode;
+    Node currentNode;
 
     public Panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -33,5 +36,19 @@ public class Panel extends JPanel {
                 row++;
             }
         } 
+
+        startNode(2, 3);
+        finalNode(11, 9);
+    }
+
+    private void startNode(int col, int row) {
+        node[col][row].start();
+        startNode = node[col][row];
+        currentNode = startNode;
+    }
+
+    private void finalNode(int col, int row) {
+        node[col][row].goal();
+        finalNode = node[col][row];
     }
 }

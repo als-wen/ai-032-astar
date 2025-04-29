@@ -29,9 +29,21 @@ public class Node extends JButton implements ActionListener {
         addActionListener(this);
     }
 
+    public void start() {
+        setBackground(Color.cyan);
+        setForeground(Color.white);
+        start = true;
+    }
+
+    public void goal() {
+        setBackground(Color.blue);
+        setForeground(Color.white);
+        goal = true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        setBackground(Color.orange);
+        setBackground(Color.yellow);
     }
 
 }
