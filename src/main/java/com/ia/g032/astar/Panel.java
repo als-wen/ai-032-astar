@@ -13,9 +13,25 @@ public class Panel extends JPanel {
     final int screenWidth = nodeSize * cols;
     final int screenHeight = nodeSize * rows;
 
+    Node[][] node = new Node[cols][rows];
+
     public Panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setLayout(new GridLayout(rows, cols));
+
+        int col = 0;
+        int row = 0;
+
+        while(col < cols && row < rows) {
+            node[col][row] = new Node(col, row);
+            this.add(node[col][row]);
+
+            col++;
+            if(col == cols) {
+                col = 0;
+                row++;
+            }
+        } 
     }
 }
