@@ -91,7 +91,7 @@ public class Panel extends JPanel {
         node.f = node.g + node.h; //f (Total estimated cost)
 
         if(node != startNode && node != finalNode) {
-            node.setText("<html>f: " + node.f + "</html>");
+            node.setText("<html>f: " + node.f + "<br>g: " + node.g + "</html>");
         }
     }
 }
