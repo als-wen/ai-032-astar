@@ -20,7 +20,6 @@ public class Panel extends JPanel {
     Node finalNode;
     Node currentNode;
     ArrayList<Node> openNodes = new ArrayList<>();
-    ArrayList<Node> closeNodes = new ArrayList<>();
 
     boolean goalReached = false;
 
@@ -109,7 +108,6 @@ public class Panel extends JPanel {
             int row = currentNode.row;
 
             currentNode.closeNode();
-            closeNodes.add(currentNode);
             openNodes.remove(currentNode);
 
             if(row - 1 >= 0) open(node[col][row - 1]);
