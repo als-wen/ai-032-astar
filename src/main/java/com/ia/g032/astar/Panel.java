@@ -45,6 +45,8 @@ public class Panel extends JPanel {
         }
         wallNode(11,7);
         wallNode(12,7);
+
+        nodeCosts();
     }
 
     private void startNode(int col, int row) {
@@ -60,6 +62,21 @@ public class Panel extends JPanel {
 
     private void wallNode(int col, int row) {
         node[col][row].wall();
+    }
+
+    private void nodeCosts() {
+        int col = 0;
+        int row = 0;
+
+        while(col < cols && row < rows) {
+            fCost(node[col][row]);
+            col++;
+
+            if(col == cols) {
+                col = 0;
+                row++;
+            }
+        }
     }
 
     private void fCost(Node node) {
