@@ -138,6 +138,7 @@ public class Panel extends JPanel {
 
             if(currentNode == finalNode) {
                 goalReached = true;
+                path();
             }
 
             count++;
@@ -149,6 +150,16 @@ public class Panel extends JPanel {
             node.openNode();
             node.parent = currentNode;
             openNodes.add(node);
+        }
+    }
+
+    private void path() {
+        Node current = finalNode;
+
+        while(current != startNode) {
+            current = current.parent;
+
+            if(current != startNode) current.path();
         }
     }
 }
