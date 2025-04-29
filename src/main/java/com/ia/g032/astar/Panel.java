@@ -61,4 +61,20 @@ public class Panel extends JPanel {
     private void wallNode(int col, int row) {
         node[col][row].wall();
     }
+
+    private void fCost(Node node) {
+        int x = Math.abs(node.col - startNode.col);
+        int y = Math.abs(node.row - startNode.row);
+        node.g = x + y; //g (Distance from start node to current node)
+
+        x = Math.abs(node.col - finalNode.col);
+        y = Math.abs(node.row - finalNode.row);
+        node.h = x + y; //heuristic (Distance from current node to goal node)
+
+        node.f = node.g + node.h; //f (Total estimated cost)
+
+        if(node != startNode && node != finalNode) {
+            node.setText("<html>f: " + node.f + "</html>");
+        }
+    }
 }
